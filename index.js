@@ -19,8 +19,18 @@ const virusSchema = {
     symptomps: Array
 }
 
-const Virus = mongoose.model('Virus', virusSchema);
+const Virus = mongoose.model('viruses', virusSchema);
 
+// get protocol restful api
+app.get('/viruses', function(req, res){
+    Virus.find(function(err, resultVirus){
+        if(!err){
+            res.send(resultVirus);
+        } else {
+            res.send(err);
+        }
+    });
+});
 
 app.listen(port, function(){
     console.log("Server is listening on port: " + port);
