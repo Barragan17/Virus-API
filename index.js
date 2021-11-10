@@ -51,6 +51,19 @@ app.route('/viruses')
     });
 });
 
+app.route('/viruses/:virusName')
+
+// getting specific viruses
+.get(function(req, res){
+    Virus.findOne({name: req.params.virusName}, function(err, foundVirus){
+        if(foundVirus){
+            res.send(foundVirus);
+        } else {
+            res.send("Virus Cannot be Found");
+        }
+    }); 
+});
+
 app.listen(port, function(){
     console.log("Server is listening on port: " + port);
 });
