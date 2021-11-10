@@ -49,6 +49,16 @@ app.route('/viruses')
             res.send(err);
         }
     });
+})
+
+.delete(function(req, res){
+    Virus.deleteMany(function(err){
+        if(!err){
+            res.send("Successfully deleted all data");
+        } else {
+            res.send(err);
+        }
+    })
 });
 
 app.route('/viruses/:virusName')
