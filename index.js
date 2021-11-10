@@ -78,6 +78,16 @@ app.route('/viruses/:virusName')
         });
 })
 
+.patch(function(req, res){
+    Virus.updateOne({name: req.params.virusName}, {$set : req.body}, function(err){
+        if(!err){
+            res.send("Success Patching the document");
+        } else {
+            res.send("Error with e: " + err)
+        }
+    })
+})
+
 // deleting specific viruses
 .delete(function(req, res){
     Virus.deleteOne({name: req.params.virusName}, function(err){
