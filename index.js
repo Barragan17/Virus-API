@@ -62,6 +62,17 @@ app.route('/viruses/:virusName')
             res.send("Virus Cannot be Found");
         }
     }); 
+})
+
+// deleting specific viruses
+.delete(function(req, res){
+    Virus.deleteOne({name: req.params.virusName}, function(err){
+        if(!err){
+            res.send("Delete Specific Virus Success");
+        } else {
+            res.send("Failed to catch error with error: " + err);
+        }
+    });
 });
 
 app.listen(port, function(){
