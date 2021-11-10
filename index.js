@@ -32,6 +32,28 @@ app.get('/viruses', function(req, res){
     });
 });
 
+app.post('/viruses', function(req, res){
+    console.log();
+    console.log();
+    console.log();
+    console.log(); 
+
+    const newVirus = new Virus({
+        name:req.body.name,
+        desc:req.body.desc,
+        deathRate:req.body.deathRate,
+        symptomps:req.body.symptomps
+    });
+
+    newVirus.save(function(err){
+        if(!err){
+            res.send("Successfully Insert Data");
+        } else {
+            res.send(err);
+        }
+    });
+});
+
 app.listen(port, function(){
     console.log("Server is listening on port: " + port);
 });
