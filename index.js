@@ -21,8 +21,9 @@ const virusSchema = {
 
 const Virus = mongoose.model('viruses', virusSchema);
 
-// get protocol restful api
-app.get('/viruses', function(req, res){
+app.route('/viruses')
+
+.get(function(req, res){
     Virus.find(function(err, resultVirus){
         if(!err){
             res.send(resultVirus);
@@ -30,13 +31,9 @@ app.get('/viruses', function(req, res){
             res.send(err);
         }
     });
-});
+})
 
-app.post('/viruses', function(req, res){
-    console.log();
-    console.log();
-    console.log();
-    console.log(); 
+.post(function(req, res){ 
 
     const newVirus = new Virus({
         name:req.body.name,
