@@ -64,6 +64,20 @@ app.route('/viruses/:virusName')
     }); 
 })
 
+.put(function(req, res){
+    Virus.replaceOne({name: req.params.virusName}, {
+        name: req.body.name,
+        desc: req.body.desc,
+        deathRate: req.body.deathRate,
+        symptomps:  req.body.symptomps}, function(err){
+            if(!err){
+                res.send('Successfully update article');
+            } else {
+                res.send('Error with e: ' + err)
+            }
+        });
+})
+
 // deleting specific viruses
 .delete(function(req, res){
     Virus.deleteOne({name: req.params.virusName}, function(err){
